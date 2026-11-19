@@ -1,7 +1,7 @@
 // Mode hors ligne : l'application elle-même est gardée dans le cache du téléphone.
 // Les leçons et la progression sont gardées par l'application (IndexedDB), pas ici.
 // Pour publier une nouvelle version de l'application, change VERSION.
-const VERSION = 'tv-1.0.1';
+const VERSION = 'tv-1.0.2';
 const FICHIERS = [
   './',
   './index.html',

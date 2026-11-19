@@ -4,7 +4,7 @@ import { SourceGitHub, SourceLocale, synchroniser, verifierConnexion, messageErr
 import { etatVide, fusionner, meilleureTentative, quizValide, SEUIL, listeLecons } from './etat.js';
 import { aujourdhui, ajouterJours, noter, construireSession, fichesDebloquees, prochaineRevision } from './revision.js';
 
-const VERSION_APP = '1.0.1';
+const VERSION_APP = '1.0.2';
 const DEPOT_PAR_DEFAUT = 'technicien-vert-donnees';
 const zone = document.getElementById('vue');
 
@@ -1030,7 +1030,7 @@ function vueReglages() {
 
 // ---------- Connexion (première utilisation) ----------
 const LIEN_CREER_CLE =
-  'https://github.com/settings/personal-access-tokens/new?name=Technicien+Vert&description=Synchronisation+de+l%27application+Technicien+Vert&expires_in=366&contents=write';
+  'https://github.com/settings/personal-access-tokens/new?name=Technicien+Vert&description=Synchronisation+de+l%27application+Technicien+Vert&expires_in=365&contents=write';
 
 function vueBienvenue() {
   const depot = app.config.depot || DEPOT_PAR_DEFAUT;
@@ -1043,7 +1043,7 @@ function vueBienvenue() {
       <p class="surtitre">Étape 1</p>
       <h2>Crée ta clé d'accès sur GitHub</h2>
       <a class="bouton primaire large" href="${LIEN_CREER_CLE}" target="_blank" rel="noopener">Créer ma clé sur GitHub</a>
-      <p class="aide">La page s'ouvre avec le nom, la durée (1 an) et la permission déjà remplis. Connecte-toi si GitHub le demande, puis :</p>
+      <p class="aide">La page s'ouvre avec le nom, la durée (365 jours) et la permission déjà remplis. Connecte-toi si GitHub le demande, puis :</p>
       <ol class="etapes">
         <li>Dans <strong>Repository access</strong>, choisis <strong>Only select repositories</strong>, puis ton dépôt <strong>${esc(depot)}</strong>.</li>
         <li>Vérifie que <strong>Contents</strong> est sur <strong>Read and write</strong>.</li>
