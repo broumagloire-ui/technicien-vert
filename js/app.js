@@ -4,7 +4,7 @@ import { SourceGitHub, SourceLocale, synchroniser, verifierConnexion, messageErr
 import { etatVide, fusionner, meilleureTentative, quizValide, SEUIL, listeLecons } from './etat.js';
 import { aujourdhui, ajouterJours, noter, construireSession, fichesDebloquees, prochaineRevision } from './revision.js';
 
-const VERSION_APP = '1.0.2';
+const VERSION_APP = '1.0.3';
 const DEPOT_PAR_DEFAUT = 'technicien-vert-donnees';
 const zone = document.getElementById('vue');
 
@@ -423,18 +423,39 @@ function rendreBloc(b) {
   }
 }
 
+// Types de périodes d'un calendrier cultural (champ « periodes » d'une ligne).
+const PERIODES = {
+  pluie: 'saison des pluies',
+  sec: 'saison sèche',
+  preparation: 'préparation du sol',
+  semis: 'semis ou plantation',
+  entretien: 'entretien',
+  floraison: 'floraison',
+  recolte: 'récolte',
+};
+
 function rendreCalendrier(b) {
   const cases = Array.from({ length: 12 }, (_, i) => `<span class="cal-case" style="grid-column:${i + 1}"></span>`).join('');
+  const libelle = (type) => (b.libelles && b.libelles[type]) || PERIODES[type] || type;
   const zones = b.zones
     .map((z) => {
-      const description = z.pluies.map(([a, f]) => `pluies de ${MOIS_LONGS[a - 1]} à ${MOIS_LONGS[f - 1]}`).join(', puis ');
-      const pluies = z.pluies.map(([a, f]) => `<span class="cal-pluie" style="grid-column:${a} / ${f + 1}"></span>`).join('');
-      return `<div class="cal-zone"><b>${fmt(z.nom)}</b>${z.exemples ? `<small>${fmt(z.exemples)}</small>` : ''}<div class="cal-piste" role="img" aria-label="${esc(description)}">${cases}${pluies}</div></div>`;
+      // « periodes » : [{ mois: [début, fin], type }] ; sinon « pluies » : [[début, fin]].
+      const periodes = Array.isArray(z.periodes) && z.periodes.length
+        ? z.periodes.map((p) => ({ a: p.mois[0], f: p.mois[1], type: PERIODES[p.type] ? p.type : 'pluie' }))
+        : (z.pluies || []).map(([a, f]) => ({ a, f, type: 'pluie' }));
+      const de = (m) => (/^[aeiouéè]/.test(m) ? `d'${m}` : `de ${m}`);
+      const quand = (p) => (p.a === p.f ? `en ${MOIS_LONGS[p.a - 1]}` : `${de(MOIS_LONGS[p.a - 1])} à ${MOIS_LONGS[p.f - 1]}`);
+      const description = periodes.map((p) => `${libelle(p.type)} ${quand(p)}`).join(', puis ');
+      const bandes = periodes.map((p) => `<span class="cal-periode ${p.type}" style="grid-column:${p.a} / ${p.f + 1}"></span>`).join('');
+      return `<div class="cal-zone"><b>${fmt(z.nom)}</b>${z.exemples ? `<small>${fmt(z.exemples)}</small>` : ''}<div class="cal-piste" role="img" aria-label="${esc(description)}">${cases}${bandes}</div></div>`;
     })
+    .join('');
+  const legende = (Array.isArray(b.legende) && b.legende.length ? b.legende : ['pluie', 'sec'])
+    .map((type) => `<span><i class="${esc(type)}"></i>${fmt(libelle(type))}</span>`)
     .join('');
   return `<figure class="calendrier"><figcaption><strong>${fmt(b.titre)}</strong>${b.note ? `<span>${fmt(b.note)}</span>` : ''}</figcaption>
     <div class="cal-mois" aria-hidden="true">${MOIS_COURTS.map((m) => `<span>${m}</span>`).join('')}</div>${zones}
-    <div class="cal-legende"><span><i></i>saison des pluies</span><span><i class="sec"></i>saison sèche</span></div></figure>`;
+    <div class="cal-legende">${legende}</div></figure>`;
 }
 
 // ---------- Navigation ----------

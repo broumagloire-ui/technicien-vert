@@ -15,6 +15,11 @@
   --rouge-clair: #fbe5e2;
   --pluie: #3b7dd8;
   --pluie-clair: #dbe8fa;
+  --preparation: #8a6a45;
+  --semis: #2f8a3f;
+  --entretien: #9cc89a;
+  --floraison: #b7679f;
+  --recolte: #e09a2a;
   --bordure: #dad7c8;
   --ombre: 0 1px 2px rgba(30, 40, 30, 0.06), 0 4px 14px rgba(30, 40, 30, 0.06);
   --rayon: 16px;
@@ -41,6 +46,11 @@
     --rouge-clair: #3b1f1b;
     --pluie: #7fb0f0;
     --pluie-clair: #1e3049;
+    --preparation: #b8916a;
+    --semis: #6fcf7f;
+    --entretien: #4f7a52;
+    --floraison: #d58cc0;
+    --recolte: #f0b552;
     --bordure: #2f3a30;
     --ombre: none;
   }
@@ -333,6 +343,14 @@ p { margin: 0 0 12px; }
 .cal-legende { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 12px; color: var(--texte-2); font-size: 0.82rem; }
 .cal-legende i { display: inline-block; width: 14px; height: 10px; margin-right: 6px; border-radius: 3px; background: var(--pluie); vertical-align: middle; }
 .cal-legende i.sec { background: var(--surface-2); }
+/* Calendrier cultural : périodes de travaux */
+.cal-periode { z-index: 1; grid-row: 1; margin: 0 1px; border-radius: 6px; }
+.cal-periode.pluie, .cal-legende i.pluie { background: var(--pluie); }
+.cal-periode.preparation, .cal-legende i.preparation { background: var(--preparation); }
+.cal-periode.semis, .cal-legende i.semis { background: var(--semis); }
+.cal-periode.entretien, .cal-legende i.entretien { background: var(--entretien); }
+.cal-periode.floraison, .cal-legende i.floraison { background: var(--floraison); }
+.cal-periode.recolte, .cal-legende i.recolte { background: var(--recolte); }
 
 /* Quiz */
 .entete-exercice { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
