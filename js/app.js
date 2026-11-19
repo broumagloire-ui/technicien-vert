@@ -4,7 +4,7 @@ import { SourceGitHub, SourceLocale, synchroniser, verifierConnexion, messageErr
 import { etatVide, fusionner, meilleureTentative, quizValide, SEUIL, listeLecons } from './etat.js';
 import { aujourdhui, ajouterJours, noter, construireSession, fichesDebloquees, prochaineRevision } from './revision.js';
 
-const VERSION_APP = '1.0.0';
+const VERSION_APP = '1.0.1';
 const DEPOT_PAR_DEFAUT = 'technicien-vert-donnees';
 const zone = document.getElementById('vue');
 
@@ -1029,16 +1029,31 @@ function vueReglages() {
 }
 
 // ---------- Connexion (première utilisation) ----------
+const LIEN_CREER_CLE =
+  'https://github.com/settings/personal-access-tokens/new?name=Technicien+Vert&description=Synchronisation+de+l%27application+Technicien+Vert&expires_in=366&contents=write';
+
 function vueBienvenue() {
   const depot = app.config.depot || DEPOT_PAR_DEFAUT;
   const retour = app.config.jeton || estLocal() ? `<a class="retour" href="#/reglages">${I.gauche} Réglages</a>` : '';
   return `<section class="bienvenue">${retour}
     <img class="logo" src="icones/icone.svg" alt="" width="72" height="72">
     <h1>Bienvenue dans Technicien Vert</h1>
-    <p class="sous-titre">Ta formation en agriculture tropicale dans ta poche, même sans internet.</p>
+    <p class="sous-titre">Ta formation en agriculture tropicale dans ta poche, même sans internet. Pour commencer, relie l'application à ton espace privé : c'est à faire une seule fois par appareil, avec internet.</p>
+    <div class="carte">
+      <p class="surtitre">Étape 1</p>
+      <h2>Crée ta clé d'accès sur GitHub</h2>
+      <a class="bouton primaire large" href="${LIEN_CREER_CLE}" target="_blank" rel="noopener">Créer ma clé sur GitHub</a>
+      <p class="aide">La page s'ouvre avec le nom, la durée (1 an) et la permission déjà remplis. Connecte-toi si GitHub le demande, puis :</p>
+      <ol class="etapes">
+        <li>Dans <strong>Repository access</strong>, choisis <strong>Only select repositories</strong>, puis ton dépôt <strong>${esc(depot)}</strong>.</li>
+        <li>Vérifie que <strong>Contents</strong> est sur <strong>Read and write</strong>.</li>
+        <li>Tout en bas, touche <strong>Generate token</strong>, puis copie la clé (elle commence par github_pat_).</li>
+        <li>Reviens ici, et colle-la à l'étape 2.</li>
+      </ol>
+    </div>
     <form id="form-connexion" class="carte" autocomplete="off">
-      <h2>Relier l'application à ton espace privé</h2>
-      <p class="aide">Une seule fois par appareil. Il faut être connecté à internet pour cette étape.</p>
+      <p class="surtitre">Étape 2</p>
+      <h2>Colle ta clé ici</h2>
       <label for="jeton">Clé d'accès GitHub</label>
       <input type="password" id="jeton" name="jeton" required placeholder="github_pat_…" spellcheck="false" autocapitalize="off">
       <details><summary>Options avancées</summary>
@@ -1051,17 +1066,6 @@ function vueBienvenue() {
       <button class="bouton primaire large" type="submit">Connecter</button>
       <p class="aide">Ta clé reste sur cet appareil. Elle sert seulement à lire tes leçons et à envoyer ta progression dans ton dépôt privé.</p>
     </form>
-    <details class="carte"><summary>Comment obtenir ma clé ?</summary>
-      <ol class="etapes">
-        <li>Sur github.com, ouvre ton profil (photo en haut à droite), puis <strong>Settings</strong>.</li>
-        <li>Tout en bas du menu de gauche : <strong>Developer settings</strong>, puis <strong>Personal access tokens</strong>, puis <strong>Fine-grained tokens</strong>.</li>
-        <li>Clique sur <strong>Generate new token</strong>. Nom : « Technicien Vert ». Durée : 1 an.</li>
-        <li>Dans <strong>Repository access</strong>, choisis <strong>Only select repositories</strong>, puis ton dépôt <strong>${esc(depot)}</strong>.</li>
-        <li>Dans les permissions du dépôt, règle <strong>Contents</strong> sur <strong>Read and write</strong>.</li>
-        <li>Clique sur <strong>Generate token</strong>, copie la clé (elle commence par github_pat_) et colle-la ci-dessus.</li>
-      </ol>
-      <p class="aide">Claude t'accompagne pour cette étape lors de votre séance.</p>
-    </details>
   </section>`;
 }
 
