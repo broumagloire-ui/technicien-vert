@@ -4,7 +4,7 @@ import { SourceGitHub, SourceLocale, synchroniser, verifierConnexion, messageErr
 import { etatVide, fusionner, meilleureTentative, quizValide, SEUIL, listeLecons } from './etat.js';
 import { aujourdhui, ajouterJours, noter, construireSession, fichesDebloquees, prochaineRevision } from './revision.js';
 
-const VERSION_APP = '1.0.3';
+const VERSION_APP = '1.0.4';
 const DEPOT_PAR_DEFAUT = 'technicien-vert-donnees';
 const zone = document.getElementById('vue');
 
@@ -193,6 +193,7 @@ function lancerSynchro({ silencieux = false } = {}) {
       }
       app.lecons = res.lecons;
       for (const id of res.misesAJour) await ecrire('lecon:' + id, app.lecons[id]);
+      prechargerImages();
       app.reponses = res.reponses;
       await ecrire('reponses', app.reponses);
       // Fusion avec ce qui a pu changer pendant la synchronisation.
@@ -391,10 +392,8 @@ function texteSection(s) {
     else if (b.type === 'tableau') b.lignes.forEach((l) => morceaux.push(l.map(brut).join(', ') + '.'));
     else if (b.type === 'calendrier') {
       morceaux.push(brut(b.titre) + '.');
-      b.zones.forEach((z) =>
-        morceaux.push(`${brut(z.nom)} : pluies ${z.pluies.map(([a, f]) => `de ${MOIS_LONGS[a - 1]} à ${MOIS_LONGS[f - 1]}`).join(', puis ')}.`),
-      );
-    }
+      b.zones.forEach((z) => morceaux.push(`${brut(z.nom)} : ${decrireZone(b, z)}.`));
+    } else if (b.type === 'image' && b.legende) morceaux.push(`Illustration : ${brut(b.legende)}.`);
   }
   return morceaux.join(' ').replace(/·/g, ',').replace(/\s+/g, ' ');
 }
@@ -418,8 +417,44 @@ function rendreBloc(b) {
         .join('')}</tbody></table></div>`;
     case 'calendrier':
       return rendreCalendrier(b);
+    case 'image':
+      // Image ou schéma du parcours (fichier publié avec l'application, gardé hors ligne par le service worker).
+      return `<figure class="illustration"><img src="${esc(b.src)}" alt="${esc(b.alt || brut(b.legende || ''))}" loading="lazy" decoding="async" data-agrandir>${
+        b.legende || b.credit ? `<figcaption>${b.legende ? fmt(b.legende) : ''}${b.credit ? `<small>${fmt(b.credit)}</small>` : ''}</figcaption>` : ''
+      }</figure>`;
     default:
       return '';
+  }
+}
+
+// Agrandir une image en plein écran d'un simple toucher (et la refermer de même).
+document.addEventListener('click', (e) => {
+  const img = e.target.closest && e.target.closest('img[data-agrandir]');
+  if (!img) return;
+  const voile = document.createElement('div');
+  voile.className = 'image-plein-ecran';
+  voile.setAttribute('role', 'dialog');
+  voile.setAttribute('aria-label', img.alt || 'Image agrandie');
+  voile.innerHTML = `<img src="${esc(img.getAttribute('src'))}" alt="${esc(img.alt)}"><span>Touche pour fermer</span>`;
+  voile.addEventListener('click', () => voile.remove());
+  document.body.appendChild(voile);
+});
+
+// Récupère, pendant qu'il y a du réseau, les images des leçons qui ne sont pas encore gardées hors ligne.
+async function prechargerImages() {
+  if (!('caches' in window)) return;
+  const urls = new Set();
+  for (const lecon of Object.values(app.lecons || {})) {
+    for (const s of (lecon && lecon.sections) || []) {
+      for (const b of s.blocs || []) if (b.type === 'image' && b.src) urls.add(new URL(b.src, location.href).href);
+    }
+  }
+  for (const url of urls) {
+    try {
+      if (!(await caches.match(url, { ignoreSearch: true }))) await fetch(url);
+    } catch {
+      /* réessayé à la prochaine synchronisation */
+    }
   }
 }
 
@@ -434,18 +469,28 @@ const PERIODES = {
   recolte: 'récolte',
 };
 
+// « periodes » : [{ mois: [début, fin], type }] ; sinon « pluies » : [[début, fin]].
+function periodesZone(z) {
+  return Array.isArray(z.periodes) && z.periodes.length
+    ? z.periodes.map((p) => ({ a: p.mois[0], f: p.mois[1], type: PERIODES[p.type] ? p.type : 'pluie' }))
+    : (z.pluies || []).map(([a, f]) => ({ a, f, type: 'pluie' }));
+}
+
+// Description en mots d'une ligne de calendrier (lecture vocale et accessibilité).
+function decrireZone(b, z) {
+  const libelle = (type) => (b.libelles && b.libelles[type]) || PERIODES[type] || type;
+  const de = (m) => (/^[aeiouéè]/.test(m) ? `d'${m}` : `de ${m}`);
+  const quand = (p) => (p.a === p.f ? `en ${MOIS_LONGS[p.a - 1]}` : `${de(MOIS_LONGS[p.a - 1])} à ${MOIS_LONGS[p.f - 1]}`);
+  return periodesZone(z).map((p) => `${libelle(p.type)} ${quand(p)}`).join(', puis ');
+}
+
 function rendreCalendrier(b) {
   const cases = Array.from({ length: 12 }, (_, i) => `<span class="cal-case" style="grid-column:${i + 1}"></span>`).join('');
   const libelle = (type) => (b.libelles && b.libelles[type]) || PERIODES[type] || type;
   const zones = b.zones
     .map((z) => {
-      // « periodes » : [{ mois: [début, fin], type }] ; sinon « pluies » : [[début, fin]].
-      const periodes = Array.isArray(z.periodes) && z.periodes.length
-        ? z.periodes.map((p) => ({ a: p.mois[0], f: p.mois[1], type: PERIODES[p.type] ? p.type : 'pluie' }))
-        : (z.pluies || []).map(([a, f]) => ({ a, f, type: 'pluie' }));
-      const de = (m) => (/^[aeiouéè]/.test(m) ? `d'${m}` : `de ${m}`);
-      const quand = (p) => (p.a === p.f ? `en ${MOIS_LONGS[p.a - 1]}` : `${de(MOIS_LONGS[p.a - 1])} à ${MOIS_LONGS[p.f - 1]}`);
-      const description = periodes.map((p) => `${libelle(p.type)} ${quand(p)}`).join(', puis ');
+      const periodes = periodesZone(z);
+      const description = decrireZone(b, z);
       const bandes = periodes.map((p) => `<span class="cal-periode ${p.type}" style="grid-column:${p.a} / ${p.f + 1}"></span>`).join('');
       return `<div class="cal-zone"><b>${fmt(z.nom)}</b>${z.exemples ? `<small>${fmt(z.exemples)}</small>` : ''}<div class="cal-piste" role="img" aria-label="${esc(description)}">${cases}${bandes}</div></div>`;
     })

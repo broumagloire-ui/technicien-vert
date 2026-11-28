@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 330" role="img" aria-label="Notes d'encoche sèche de 0 à 6, selon la part de l'encoche qui ne donne plus de latex après la saignée">
+  <style>
+    .n { font: bold 22px sans-serif; fill: #1d271e; text-anchor: middle; }
+    .p { font: 15px sans-serif; fill: #5a6556; text-anchor: middle; }
+    .s { font: italic 15px sans-serif; fill: #5a6556; }
+  </style>
+  <rect width="640" height="330" fill="#ffffff"/>
+  <!-- 7 troncs : largeur 64, pas 89, départ x = 22. Encoche de (x, 80) à (x+64, 150). Latex blanc sur la part saine, brun sur la part sèche -->
+  <g id="troncs">
+    <rect x="22" y="40" width="64" height="200" fill="#b5a685" stroke="#6b5a3a" stroke-width="2"/>
+    <rect x="111" y="40" width="64" height="200" fill="#b5a685" stroke="#6b5a3a" stroke-width="2"/>
+    <rect x="200" y="40" width="64" height="200" fill="#b5a685" stroke="#6b5a3a" stroke-width="2"/>
+    <rect x="289" y="40" width="64" height="200" fill="#b5a685" stroke="#6b5a3a" stroke-width="2"/>
+    <rect x="378" y="40" width="64" height="200" fill="#b5a685" stroke="#6b5a3a" stroke-width="2"/>
+    <rect x="467" y="40" width="64" height="200" fill="#b5a685" stroke="#6b5a3a" stroke-width="2"/>
+    <rect x="556" y="40" width="64" height="200" fill="#b5a685" stroke="#6b5a3a" stroke-width="2"/>
+  </g>
+  <g stroke-width="7" stroke-linecap="round">
+    <!-- 0 : tout donne du latex -->
+    <line x1="22" y1="80" x2="86" y2="150" stroke="#ffffff"/>
+    <!-- 1 : ~10 % sec -->
+    <line x1="111" y1="80" x2="168.6" y2="143" stroke="#ffffff"/><line x1="168.6" y1="143" x2="175" y2="150" stroke="#5b3b1a"/>
+    <!-- 2 : ~30 % sec -->
+    <line x1="200" y1="80" x2="244.8" y2="129" stroke="#ffffff"/><line x1="244.8" y1="129" x2="264" y2="150" stroke="#5b3b1a"/>
+    <!-- 3 : ~50 % -->
+    <line x1="289" y1="80" x2="321" y2="115" stroke="#ffffff"/><line x1="321" y1="115" x2="353" y2="150" stroke="#5b3b1a"/>
+    <!-- 4 : ~70 % -->
+    <line x1="378" y1="80" x2="397.2" y2="101" stroke="#ffffff"/><line x1="397.2" y1="101" x2="442" y2="150" stroke="#5b3b1a"/>
+    <!-- 5 : ~90 % -->
+    <line x1="467" y1="80" x2="473.4" y2="87" stroke="#ffffff"/><line x1="473.4" y1="87" x2="531" y2="150" stroke="#5b3b1a"/>
+    <!-- 6 : 100 % sec -->
+    <line x1="556" y1="80" x2="620" y2="150" stroke="#5b3b1a"/>
+  </g>
+  <text class="n" x="54" y="268">0</text><text class="p" x="54" y="290">sain</text>
+  <text class="n" x="143" y="268">1</text><text class="p" x="143" y="290">1-20 %</text>
+  <text class="n" x="232" y="268">2</text><text class="p" x="232" y="290">21-40 %</text>
+  <text class="n" x="321" y="268">3</text><text class="p" x="321" y="290">41-60 %</text>
+  <text class="n" x="410" y="268">4</text><text class="p" x="410" y="290">61-80 %</text>
+  <text class="n" x="499" y="268">5</text><text class="p" x="499" y="290">81-99 %</text>
+  <text class="n" x="588" y="268">6</text><text class="p" x="588" y="290">100 %</text>
+  <text class="s" x="22" y="26">Blanc : l'encoche donne du latex. Brun : partie sèche.</text>
+  <text class="s" x="22" y="318">% = longueur d'encoche sans latex après la saignée (CNRA)</text>
+</svg>

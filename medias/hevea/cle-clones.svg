@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 900" role="img" aria-label="Clé d'identification des cinq clones d'hévéa vulgarisés en Côte d'Ivoire, en trois questions">
+  <defs>
+    <marker id="fl" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#5a6556"/>
+    </marker>
+  </defs>
+  <style>
+    .boite { fill: #f4f1e8; stroke: #5a6556; stroke-width: 2; }
+    .question { fill: #e2eedd; stroke: #2f6b3a; stroke-width: 2.5; }
+    .t { font: 18px sans-serif; fill: #1d271e; text-anchor: middle; }
+    .tb { font: bold 19px sans-serif; fill: #1d271e; text-anchor: middle; }
+    .q { font: bold 19px sans-serif; fill: #2f6b3a; text-anchor: middle; }
+    .clone { font: bold 26px sans-serif; text-anchor: middle; }
+    .lien { stroke: #5a6556; stroke-width: 2; fill: none; marker-end: url(#fl); }
+  </style>
+  <rect width="640" height="900" fill="#ffffff"/>
+
+  <!-- Départ -->
+  <rect class="boite" x="60" y="14" width="520" height="62" rx="12"/>
+  <text class="tb" x="320" y="40">Plant à 3 ou 4 étages foliaires matures</text>
+  <text class="t" x="320" y="64">jardin à bois de greffe ou jeune plantation</text>
+  <path class="lien" d="M320,76 L320,104"/>
+
+  <!-- Question 1 -->
+  <rect class="question" x="40" y="106" width="560" height="56" rx="12"/>
+  <text class="q" x="320" y="130">① Couleur des feuilles</text>
+  <text class="q" x="320" y="153">et longueur du pétiolule central ?</text>
+  <path class="lien" d="M180,162 L110,206"/>
+  <path class="lien" d="M320,162 L320,206"/>
+  <path class="lien" d="M460,162 L530,206"/>
+
+  <rect class="boite" x="18" y="208" width="184" height="84" rx="10"/>
+  <text class="tb" x="110" y="236">Vert foncé</text>
+  <text class="t" x="110" y="260">pétiolule long</text>
+  <text class="t" x="110" y="282">&gt; 1,4 cm</text>
+  <rect class="boite" x="228" y="208" width="184" height="84" rx="10"/>
+  <text class="tb" x="320" y="236">Vert</text>
+  <text class="t" x="320" y="260">pétiolule moyen</text>
+  <text class="t" x="320" y="282">1 à 1,4 cm</text>
+  <rect class="boite" x="438" y="208" width="184" height="84" rx="10"/>
+  <text class="tb" x="530" y="236">Vert clair</text>
+  <text class="t" x="530" y="260">pétiolule court</text>
+  <text class="t" x="530" y="282">≤ 0,9 cm</text>
+
+  <path class="lien" d="M110,292 L110,318"/>
+  <rect x="30" y="320" width="160" height="54" rx="27" fill="#2c5e2a"/>
+  <text class="clone" x="110" y="357" fill="#ffffff">GT 1</text>
+  <path class="lien" d="M530,292 L530,318"/>
+  <rect x="450" y="320" width="160" height="54" rx="27" fill="#a8d08d" stroke="#2f6b3a" stroke-width="2"/>
+  <text class="clone" x="530" y="357" fill="#1d271e">PB 217</text>
+  <path class="lien" d="M320,292 L320,318"/>
+  <rect class="boite" x="230" y="320" width="180" height="54" rx="10"/>
+  <text class="tb" x="320" y="353">Un clone IRCA</text>
+  <path class="lien" d="M320,374 L320,402"/>
+
+  <!-- Question 2 -->
+  <rect class="question" x="40" y="404" width="560" height="56" rx="12"/>
+  <text class="q" x="320" y="428">② Forme de l'étage foliaire, orientation</text>
+  <text class="q" x="320" y="451">des pétiolules, coupe de la foliole ?</text>
+  <path class="lien" d="M230,460 L170,500"/>
+  <path class="lien" d="M410,460 L470,500"/>
+  <rect class="boite" x="40" y="502" width="260" height="88" rx="10"/>
+  <text class="tb" x="170" y="530">Conique</text>
+  <text class="t" x="170" y="554">pétiolules droits</text>
+  <text class="t" x="170" y="577">coupe plate</text>
+  <rect class="boite" x="340" y="502" width="260" height="88" rx="10"/>
+  <text class="tb" x="470" y="530">Hémisphérique</text>
+  <text class="t" x="470" y="554">pétiolules ascendants</text>
+  <text class="t" x="470" y="577">coupe concave</text>
+  <path class="lien" d="M170,590 L170,616"/>
+  <rect x="90" y="618" width="160" height="54" rx="27" fill="#5a9e48"/>
+  <text class="clone" x="170" y="655" fill="#ffffff">IRCA 331</text>
+  <path class="lien" d="M470,590 L470,616"/>
+
+  <!-- Question 3 -->
+  <rect class="question" x="340" y="618" width="260" height="56" rx="12"/>
+  <text class="q" x="470" y="642">③ Glandes</text>
+  <text class="q" x="470" y="665">nectarifères ?</text>
+  <path class="lien" d="M420,674 L390,712"/>
+  <path class="lien" d="M520,674 L550,712"/>
+  <rect class="boite" x="312" y="714" width="156" height="72" rx="10"/>
+  <text class="tb" x="390" y="742">Abondantes</text>
+  <text class="t" x="390" y="766">3-4 proéminentes</text>
+  <rect class="boite" x="474" y="714" width="156" height="72" rx="10"/>
+  <text class="tb" x="552" y="742">Peu abondantes</text>
+  <text class="t" x="552" y="766">3 glandes</text>
+  <path class="lien" d="M390,786 L390,812"/>
+  <rect x="316" y="814" width="148" height="54" rx="27" fill="#5a9e48"/>
+  <text class="clone" x="390" y="851" fill="#ffffff">IRCA 230</text>
+  <path class="lien" d="M552,786 L552,812"/>
+  <rect x="478" y="814" width="148" height="54" rx="27" fill="#5a9e48"/>
+  <text class="clone" x="552" y="851" fill="#ffffff">IRCA 41</text>
+
+  <text class="t" x="170" y="740" style="font-style:italic;fill:#5a6556">D'après Kouakou et al.,</text>
+  <text class="t" x="170" y="763" style="font-style:italic;fill:#5a6556">CNRA, 2020</text>
+  <text class="t" x="170" y="800" style="font-style:italic;fill:#5a6556">En cas de doute :</text>
+  <text class="t" x="170" y="823" style="font-style:italic;fill:#5a6556">analyse génétique</text>
+</svg>

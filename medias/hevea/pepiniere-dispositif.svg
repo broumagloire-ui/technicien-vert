@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" role="img" aria-label="Pépinière d'hévéa en pleine terre : doubles lignes en quinconce, 25 cm entre plants, 30 cm entre les deux lignes, 70 cm entre doubles lignes">
+  <style>
+    .t { font: 18px sans-serif; fill: #1d271e; }
+    .s { font: italic 16px sans-serif; fill: #5a6556; }
+    .plant { fill: #3d8a4b; }
+    .cote { stroke: #8a5a10; stroke-width: 2; fill: none; }
+    .ligne { stroke: #dad7c8; stroke-width: 2; stroke-dasharray: 6 5; }
+  </style>
+  <rect width="640" height="380" fill="#ffffff"/>
+  <text class="t" x="20" y="30" style="font-weight:bold;fill:#2f6b3a">Vue de dessus d'un bloc de pépinière</text>
+  <!-- Échelle : 1 cm = 3 px. Doubles lignes à x = 100 et 190 (30 cm), puis 400 et 490 (70 cm d'écart entre doubles lignes = 210 px) -->
+  <line class="ligne" x1="100" y1="50" x2="100" y2="330"/><line class="ligne" x1="190" y1="50" x2="190" y2="330"/>
+  <line class="ligne" x1="400" y1="50" x2="400" y2="330"/><line class="ligne" x1="490" y1="50" x2="490" y2="330"/>
+  <g class="plant">
+    <circle cx="100" cy="70" r="9"/><circle cx="100" cy="145" r="9"/><circle cx="100" cy="220" r="9"/><circle cx="100" cy="295" r="9"/>
+    <circle cx="190" cy="107" r="9"/><circle cx="190" cy="182" r="9"/><circle cx="190" cy="257" r="9"/><circle cx="190" cy="320" r="9"/>
+    <circle cx="400" cy="70" r="9"/><circle cx="400" cy="145" r="9"/><circle cx="400" cy="220" r="9"/><circle cx="400" cy="295" r="9"/>
+    <circle cx="490" cy="107" r="9"/><circle cx="490" cy="182" r="9"/><circle cx="490" cy="257" r="9"/><circle cx="490" cy="320" r="9"/>
+  </g>
+  <!-- Cotes -->
+  <path class="cote" d="M70,70 L70,145 M62,70 L78,70 M62,145 L78,145"/>
+  <text class="t" x="10" y="114">25 cm</text>
+  <path class="cote" d="M100,350 L190,350 M100,342 L100,358 M190,342 L190,358"/>
+  <text class="t" x="118" y="374">30 cm</text>
+  <path class="cote" d="M190,350 L400,350 M400,342 L400,358"/>
+  <text class="t" x="265" y="374">70 cm (allée)</text>
+  <text class="s" x="520" y="120">plants</text>
+  <text class="s" x="520" y="140">en quinconce</text>
+  <text class="s" x="520" y="200">≈ 90 000</text>
+  <text class="s" x="520" y="220">points de</text>
+  <text class="s" x="520" y="240">semis par ha</text>
+</svg>

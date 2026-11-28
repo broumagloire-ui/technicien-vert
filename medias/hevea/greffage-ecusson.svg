@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 700" role="img" aria-label="Greffage en écusson de l'hévéa en quatre étapes : ouvrir la fenêtre, prélever le greffon, insérer l'écusson, ligaturer">
+  <style>
+    .titre { font: bold 21px sans-serif; fill: #2f6b3a; }
+    .t { font: 16px sans-serif; fill: #1d271e; }
+    .s { font: italic 15px sans-serif; fill: #5a6556; }
+    .tige { fill: #9cbf6e; stroke: #4f6b2a; stroke-width: 2.5; }
+    .sol { stroke: #8a5a10; stroke-width: 3; }
+    .incision { stroke: #7a2e1a; stroke-width: 3; fill: none; }
+    .bois { fill: #f2e6c4; stroke: #7a6a3a; stroke-width: 1.5; }
+    .ecusson { fill: #b9d48f; stroke: #4f6b2a; stroke-width: 2; }
+    .oeil { fill: #8a5a10; }
+    .cicatrice { fill: none; stroke: #6b4f1d; stroke-width: 3; }
+    .trait { stroke: #5a6556; stroke-width: 1.5; fill: none; }
+    .cadre { fill: none; stroke: #dad7c8; stroke-width: 2; }
+    .bande { stroke: #e0e8ee; stroke-width: 9; stroke-linecap: round; opacity: 0.95; }
+    .bandebord { stroke: #7f8c99; stroke-width: 11; stroke-linecap: round; }
+  </style>
+  <rect width="640" height="700" fill="#ffffff"/>
+  <rect class="cadre" x="8" y="8" width="306" height="336" rx="12"/>
+  <rect class="cadre" x="326" y="8" width="306" height="336" rx="12"/>
+  <rect class="cadre" x="8" y="356" width="306" height="336" rx="12"/>
+  <rect class="cadre" x="326" y="356" width="306" height="336" rx="12"/>
+
+  <!-- 1. Fenêtre sur le porte-greffe -->
+  <text class="titre" x="22" y="38">① Ouvrir la fenêtre</text>
+  <rect class="tige" x="92" y="58" width="44" height="246" rx="8"/>
+  <line class="sol" x1="30" y1="300" x2="200" y2="300"/>
+  <rect class="bois" x="104" y="150" width="20" height="96"/>
+  <path class="incision" d="M104,150 L104,246 M124,150 L124,246 M104,150 L124,150"/>
+  <path d="M104,246 L124,246 L126,282 L102,282 Z" fill="#9cbf6e" stroke="#4f6b2a" stroke-width="2"/>
+  <path class="trait" d="M150,246 L150,300"/><path class="trait" d="M144,246 L156,246 M144,300 L156,300"/>
+  <text class="t" x="160" y="270">5 à 10 cm</text><text class="t" x="160" y="290">du sol</text>
+  <path class="trait" d="M128,170 L168,140"/>
+  <text class="t" x="172" y="128">2 incisions</text><text class="t" x="172" y="148">verticales de 8 cm,</text>
+  <text class="t" x="172" y="168">reliées en haut</text>
+  <path class="trait" d="M124,272 L168,212"/>
+  <text class="t" x="172" y="208">languette</text><text class="t" x="172" y="228">d'écorce</text>
+  <text class="s" x="22" y="330">Porte-greffe de 2 à 3 mois (en vert)</text>
+
+  <!-- 2. Prélever le greffon -->
+  <text class="titre" x="340" y="38">② Prélever le greffon</text>
+  <rect x="352" y="160" width="256" height="34" rx="14" fill="#9cbf6e" stroke="#4f6b2a" stroke-width="2.5"/>
+  <path class="cicatrice" d="M470,196 Q480,206 490,196"/>
+  <path d="M474,158 L480,146 L486,158 Z" class="oeil"/>
+  <path d="M420,152 Q480,138 540,152 L540,202 Q480,214 420,202 Z" fill="none" stroke="#7a2e1a" stroke-width="2.5" stroke-dasharray="7 5"/>
+  <path class="trait" d="M482,146 L520,96"/>
+  <text class="t" x="476" y="72">œil (bourgeon)</text><text class="t" x="476" y="90">au-dessus de la</text>
+  <path class="trait" d="M490,204 L520,250"/>
+  <text class="t" x="476" y="270">cicatrice foliaire</text>
+  <path class="trait" d="M420,212 L420,236 M540,212 L540,236 M420,226 L540,226"/>
+  <text class="t" x="352" y="300">couper 3 à 4 cm au-dessus</text><text class="t" x="352" y="320">et au-dessous de l'œil</text>
+  <text class="s" x="352" y="236">Baguette (bois de greffe)</text>
+
+  <!-- 3. Insérer l'écusson -->
+  <text class="titre" x="22" y="386">③ Insérer l'écusson</text>
+  <rect class="tige" x="92" y="406" width="44" height="246" rx="8"/>
+  <line class="sol" x1="30" y1="648" x2="200" y2="648"/>
+  <rect class="ecusson" x="105" y="500" width="18" height="92"/>
+  <path d="M110,532 L114,522 L118,532 Z" class="oeil"/>
+  <path class="cicatrice" d="M109,540 Q114,546 119,540"/>
+  <path class="trait" d="M124,528 L168,500"/>
+  <text class="t" x="172" y="488">l'œil vers</text><text class="t" x="172" y="508">le haut, au-dessus</text>
+  <text class="t" x="172" y="528">de la cicatrice</text>
+  <path class="trait" d="M124,592 L168,600"/>
+  <text class="t" x="172" y="596">languette</text><text class="t" x="172" y="616">coupée (ou</text><text class="t" x="172" y="636">rabattue s'il pleut)</text>
+  <text class="s" x="22" y="680">Ne touche jamais le cambium</text>
+
+  <!-- 4. Ligaturer -->
+  <text class="titre" x="340" y="386">④ Ligaturer</text>
+  <rect class="tige" x="410" y="406" width="44" height="246" rx="8"/>
+  <line class="sol" x1="350" y1="648" x2="520" y2="648"/>
+  <g>
+    <line class="bandebord" x1="404" y1="612" x2="460" y2="596"/>
+    <line class="bandebord" x1="404" y1="596" x2="460" y2="580"/>
+    <line class="bandebord" x1="404" y1="580" x2="460" y2="564"/>
+    <line class="bandebord" x1="404" y1="564" x2="460" y2="548"/>
+    <line class="bandebord" x1="404" y1="548" x2="460" y2="532"/>
+    <line class="bandebord" x1="404" y1="532" x2="460" y2="516"/>
+    <line class="bandebord" x1="404" y1="516" x2="460" y2="500"/>
+    <line class="bande" x1="404" y1="612" x2="460" y2="596"/>
+    <line class="bande" x1="404" y1="596" x2="460" y2="580"/>
+    <line class="bande" x1="404" y1="580" x2="460" y2="564"/>
+    <line class="bande" x1="404" y1="564" x2="460" y2="548"/>
+    <line class="bande" x1="404" y1="548" x2="460" y2="532"/>
+    <line class="bande" x1="404" y1="532" x2="460" y2="516"/>
+    <line class="bande" x1="404" y1="516" x2="460" y2="500"/>
+  </g>
+  <path d="M488,612 L488,512" stroke="#2f6b3a" stroke-width="3" fill="none"/>
+  <path d="M480,524 L488,508 L496,524 Z" fill="#2f6b3a"/>
+  <text class="t" x="500" y="540">spirales</text><text class="t" x="500" y="560">serrées,</text>
+  <text class="t" x="500" y="580">de bas</text><text class="t" x="500" y="600">en haut</text>
+  <text class="s" x="340" y="680">30 jours après : greffon vert = réussi</text>
+</svg>
